@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Designs - Ready-to-Ink Art | Berserk Tattoos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #111111;
+            color: #F2F2F2;
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+        
+        /* Film Grain Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,.03) 2px, rgba(255,255,255,.03) 4px),
+                repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0,0,0,.05) 2px, rgba(0,0,0,.05) 4px);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.5;
+        }
+        
+        /* Typography */
+        h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            font-weight: 400; 
+            letter-spacing: -0.02em; 
+            line-height: 0.85;
+            text-transform: uppercase;
+        }
+        h2 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            font-weight: 400; 
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #7B1113;
+        }
+        
+        /* Navigation (Same as other pages) */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            z-index: 50;
+            padding: 1.5rem 5%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(123, 17, 19, 0.2);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.75rem;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+            color: #F2F2F2;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #F2F2F2;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #7B1113;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Flash Hero */
+        .flash-hero {
+            padding: 10rem 5% 5rem;
+            background: #0a0a0a;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flash-hero::before {
+            content: 'FLASH';
+            position: absolute;
+            top: 50%;
+            right: -5%;
+            transform: translateY(-50%) rotate(90deg);
+            font-size: 20rem;
+            font-family: 'Cinzel', serif;
+            opacity: 0.02;
+            letter-spacing: 0.5em;
+        }
+        
+        .hero-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .hero-content p {
+            font-size: 1.1rem;
+            opacity: 0.7;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+        
+        .artist-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(242, 242, 242, 0.1);
+            border-bottom: 1px solid rgba(242, 242, 242, 0.1);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: #7B1113;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            padding: 3rem 5%;
+            background: #111111;
+            position: sticky;
+            top: 80px;
+            z-index: 40;
+            border-bottom: 1px solid rgba(123, 17, 19, 0.2);
+        }
+        
+        .filter-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .artist-filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .artist-filter {
+            padding: 0.75rem 2rem;
+            background: none;
+            border: 2px solid rgba(242, 242, 242, 0.2);
+            color: #F2F2F2;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .artist-filter:hover {
+            border-color: #7B1113;
+        }
+        
+        .artist-filter.active {
+            background: #7B1113;
+            border-color: #7B1113;
+        }
+        
+        .artist-filter.amelia.active { background: #C4A484; border-color: #C4A484; }
+        .artist-filter.ben.active { background: #8B9DC3; border-color: #8B9DC3; }
+        .artist-filter.monique.active { background: #7B1113; border-color: #7B1113; }
+        
+        .design-count {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Flash Grid */
+        .flash-grid-section {
+            padding: 5rem 5%;
+            background: #0a0a0a;
+            min-height: 80vh;
+        }
+        
+        .flash-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .flash-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .flash-item {
+            position: relative;
+            background: #111111;
+            border: 1px solid rgba(123, 17, 19, 0.1);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            animation: itemFadeIn 0.6s ease forwards;
+        }
+        
+        .flash-item:nth-child(n) { animation-delay: calc(0.1s * var(--i)); }
+        
+        @keyframes itemFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+        
+        .flash-image {
+            width: 100%;
+            height: 350px;
+            background: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flash-image::after {
+            content: 'FLASH DESIGN';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #333;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        
+        .flash-number {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(17, 17, 17, 0.9);
+            color: #F2F2F2;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            z-index: 2;
+        }
+        
+        .flash-artist {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(123, 17, 19, 0.9);
+            color: #F2F2F2;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+        
+        .flash-item[data-artist="amelia"] .flash-artist { background: #C4A484; }
+        .flash-item[data-artist="ben"] .flash-artist { background: #8B9DC3; }
+        .flash-item[data-artist="monique"] .flash-artist { background: #7B1113; }
+        
+        .flash-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(17, 17, 17, 0.9));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .flash-item:hover .flash-overlay {
+            opacity: 1;
+        }
+        
+        .flash-info {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .flash-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .flash-size {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+        
+        .flash-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(123, 17, 19, 0.1);
+            border: 1px solid rgba(123, 17, 19, 0.2);
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        
+        .flash-cta {
+            width: 100%;
+            padding: 1rem;
+            background: #7B1113;
+            border: none;
+            color: #F2F2F2;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .flash-item:hover .flash-cta {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .flash-cta:hover {
+            background: #9B1517;
+        }
+        
+        .flash-item:hover {
+            transform: scale(0.98);
+            box-shadow: 0 20px 40px rgba(123, 17, 19, 0.2);
+            border-color: #7B1113;
+        }
+        
+        /* Info Section */
+        .info-section {
+            padding: 5rem 5%;
+            background: #111111;
+            border-top: 1px solid rgba(123, 17, 19, 0.2);
+        }
+        
+        .info-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .info-card {
+            padding: 2rem;
+            border: 1px solid rgba(242, 242, 242, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            border-color: #7B1113;
+            transform: translateY(-5px);
+        }
+        
+        .info-icon {
+            font-size: 3rem;
+            color: #7B1113;
+            margin-bottom: 1rem;
+        }
+        
+        .info-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            opacity: 1;
+        }
+        
+        .info-card p {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 5%;
+            background: #0a0a0a;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(123, 17, 19, 0.1), transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .cta-content p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: #7B1113;
+            color: #F2F2F2;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: 2px solid #7B1113;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(123, 17, 19, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 5rem 5% 3rem;
+            background: #111111;
+            border-top: 1px solid rgba(123, 17, 19, 0.2);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .mobile-menu span {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #F2F2F2;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu span:nth-child(1) { top: 0; }
+        .mobile-menu span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+        .mobile-menu span:nth-child(3) { bottom: 0; }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .flash-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .artist-filters {
+                justify-content: center;
+            }
+            
+            .artist-stats {
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="logo">BERSERK</a>
+            <div class="nav-links">
+                <a href="index.html#artists">ARTISTS</a>
+                <a href="gallery.html">GALLERY</a>
+                <a href="#" class="active">FLASH</a>
+                <a href="shop.html">SHOP</a>
+                <a href="index.html#booking">BOOKING</a>
+                <a href="index.html#contact">CONTACT</a>
+            </div>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- Flash Hero -->
+    <section class="flash-hero">
+        <div class="hero-content">
+            <h1>FLASH DESIGNS</h1>
+            <p class="hero-subtitle">Ready to wear. Ready to tell your story.</p>
+            <p>Browse our collection of pre-designed masterpieces. Each flash design is available for immediate booking—walk in with an idea, walk out with art that lasts forever.</p>
+            
+            <div class="artist-stats">
+                <div class="stat">
+                    <span class="stat-number">150+</span>
+                    <span class="stat-label">Available Designs</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Master Artists</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Style Categories</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="filter-container">
+            <div class="artist-filters">
+                <button class="artist-filter active" data-artist="all">ALL ARTISTS</button>
+                <button class="artist-filter amelia" data-artist="amelia">AMELIA KELSO</button>
+                <button class="artist-filter ben" data-artist="ben">BEN WHITE RAVEN</button>
+                <button class="artist-filter monique" data-artist="monique">MONIQUE MOORE</button>
+            </div>
+            <div class="design-count">
+                <span id="design-count">Showing 9 designs</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Flash Grid -->
+    <section class="flash-grid-section">
+        <div class="flash-container">
+            <div class="flash-grid">
+                <!-- Flash Item 1 - Amelia -->
+                <div class="flash-item" data-artist="amelia" style="--i: 1;">
+                    <div class="flash-image">
+                        <div class="flash-number">#001</div>
+                        <div class="flash-artist">AMELIA</div>
+                    </div>
+                    <div class="flash-overlay"></div>
+                    <div class="flash-info">
+                        <h3 class="flash-title">Ethereal Botanicals</h3>
+                        <p class="flash-size">4" × 6" • Approximately 3-4 hours</p>
+                        <div class="flash-tags">
+                            <span class="tag">Fine Line</span>
+                            <span class="tag">Floral</span>
+                            <span class="tag">Arm/Leg</span>
+                        </div>
+                        <button class="flash-cta">BOOK THIS DESIGN</button>
+                    </div>
+                </div>
+                
+                <!-- Flash Item 2 - Ben -->
+                <div class="flash-item" data-artist="ben" style="--i: 2;">
+                    <div class="flash-image">
+                        <div class="flash-number">#002</div>
+                        <div class="flash-artist">BEN</div>
+                    </div>
+                    <div class="flash-overlay"></div>
+                    <div class="flash-info">
+                        <h3 class="flash-title">Lion Portrait</h3>
+                        <p class="flash-size">6" × 8" • Approximately 6-8 hours</p>
+                        <div class="flash-tags">
+                            <span class="tag">Realism</span>
+                            <span class="tag">Animal</span>
+                            <span class="tag">Chest/Back</span>
+                        </div>
+                        <button class="flash-cta">BOOK THIS DESIGN</button>
+                    </div>
+                </div>
+                
+                <!-- Flash Item 3 - Monique -->
+                <div class="flash-item" data-artist="monique" style="--i: 3;">
+                    <div class="flash-image">
+                        <div class="flash-number">#003</div>
+                        <div class="flash-artist">MONIQUE</div>
+                    </div>
+                    <div class="flash-overlay"></div>
+                    <div class="flash-info">
+                        <h3 class="flash-title">Dark Serpent</h3>
+                        <p class="flash-size">5" × 10" • Approximately 5-6 hours</p>
+                        <div class="flash-tags">
+                            <span class="tag">Blackwork</span>
+                            <span class="tag">Snake</span>
+                            <span class="tag">Full Arm</span>
+                        </div>
+                        <button class="flash-cta">BOOK THIS DESIGN</button>
+                    </div>
+                </div>
+                
+                <!-- Flash Item 4 - Amelia -->
+                <div class="flash-item" data-artist="amelia" style="--i: 4;">
+                    <div class="flash-image">
+                        <div class="flash-number">#004</div>
+                        <div class="flash-artist">AMELIA</div>
+                    </div>
+                    <div class="flash-overlay"></div>
+                    <div class="flash-info">
+                        <h3 class="flash-title">Sacred Geometry</h3>
+                        <p class="flash-size">4" × 4" • Approximately 2-3 hours</p>
+                        <div class="flash-tags">
+                            <span class="tag">Geometric</span>
+                            <span class="tag">Mandala</span>
+                            <span class="tag">Universal</span>
+                        </div>
+                        <button class="flash-cta">BOOK THIS DESIGN</button>
+                    </div>
+                </div>
+                
+                <!-- Flash Item 5 - Ben -->
+                <div class="flash-item" data-artist="ben" style="--i: 5;">
+                    <div class="flash-image">
+                        <div class="flash-number">#005</div>
+                        <div class="flash-artist">BEN</div>
+                    </div>
+                    <div class="flash-overlay"></div>
+                    <div class="flash-info">
+                        <h3 class="flash-title">Eagle Flight</h3>
+                        <p class="flash-size">8" × 10" • Approximately 8-10 hours</p>
+                        <div class="flash-tags">
+                            <span class="tag">Realism</span>
+                            <span class="tag">Bird</span>
+                            <span class="tag">Back Piece</span>
+                        </div>
+                        <button class="flash-cta">BOOK THIS DESIGN</button>
+                    </div>
+                </div>
+                
+                <!-- Flash Item 6 - Monique -->
+                <div class="flash-item" data-artist="monique" style="--i: 6;">
+                    <div class="flash-image">
+                        <div class="flash-number">#006</div>
+                        <div class="flash-artist">MONIQUE</div>
+                    </div>
+                    <div class="flash-overlay"></div>
+                    <div class="flash-info">
+                        <h3 class="flash-title">Gothic Rose</h3>
+                        <p class="flash-size">4" × 5" • Approximately 3-4 hours</p>
+                        <div class="flash-tags">
+                            <span class="tag">Gothic</span>
+                            <span class="tag">Floral</span>
+                            <span class="tag">Forearm</span>
+                        </div>
+                        <button class="flash-cta">BOOK THIS DESIGN</button>
+                    </div>
+                </div>
+                
+                <!-- Flash Item 7 - Amelia -->
+                <div class="flash-item" data-artist="amelia" style="--i: 7;">
+                    <div class="flash-image">
+                        <div class="flash-number">#007</div>
+                        <div class="flash-artist">AMELIA</div>
+                    </div>
+                    <div class="flash-overlay"></div>
+                    <div class="flash-info">
+                        <h3 class="flash-title">Delicate Script</h3>
+                        <p class="flash-size">2" × 6" • Approximately 1-2 hours</p>
+                        <div class="flash-tags">
+                            <span class="tag">Script</span>
+                            <span class="tag">Quote</span>
+                            <span class="tag">Ribs/Spine</span>
+                        </div>
+                        <button class="flash-cta">BOOK THIS DESIGN</button>
+                    </div>
+                </div>
+                
+                <!-- Flash Item 8 - Ben -->
+                <div class="flash-item" data-artist="ben" style="--i: 8;">
+                    <div class="flash-image">
+                        <div class="flash-number">#008</div>
+                        <div class="flash-artist">BEN</div>
+                    </div>
+                    <div class="flash-overlay"></div>
+                    <div class="flash-info">
+                        <h3 class="flash-title">Ocean Waves</h3>
+                        <p class="flash-size">6" × 4" • Approximately 4-5 hours</p>
+                        <div class="flash-tags">
+                            <span class="tag">Realism</span>
+                            <span class="tag">Nature</span>
+                            <span class="tag">Shoulder</span>
+                        </div>
+                        <button class="flash-cta">BOOK THIS DESIGN</button>
+                    </div>
+                </div>
+                
+                <!-- Flash Item 9 - Monique -->
+                <div class="flash-item" data-artist="monique" style="--i: 9;">
+                    <div class="flash-image">
+                        <div class="flash-number">#009</div>
+                        <div class="flash-artist">MONIQUE</div>
+                    </div>
+                    <div class="flash-overlay"></div>
+                    <div class="flash-info">
+                        <h3 class="flash-title">Skull Moth</h3>
+                        <p class="flash-size">5" × 5" • Approximately 4-5 hours</p>
+                        <div class="flash-tags">
+                            <span class="tag">Dark Art</span>
+                            <span class="tag">Skull</span>
+                            <span class="tag">Chest</span>
+                        </div>
+                        <button class="flash-cta">BOOK THIS DESIGN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="info-container">
+            <h2>HOW FLASH WORKS</h2>
+            <p style="max-width: 600px; margin: 0 auto 3rem; opacity: 0.8;">
+                Flash designs offer the perfect balance of spontaneity and artistry. Here's what you need to know.
+            </p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">⚡</div>
+                    <h4>READY TO GO</h4>
+                    <p>Pre-designed artwork means shorter wait times. Most flash pieces can be booked within days, not months.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🎨</div>
+                    <h4>ARTIST'S VISION</h4>
+                    <p>Each flash design represents pure artistic expression from our masters, showcasing their signature styles.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">💎</div>
+                    <h4>UNIQUE TO YOU</h4>
+                    <p>While the design is pre-made, placement and minor customizations ensure your tattoo remains personal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>FOUND YOUR DESIGN?</h2>
+            <p>Book your flash tattoo today and wear a piece of Berserk artistry. Walk-ins welcome based on availability, but we recommend booking ahead to secure your preferred time.</p>
+            <a href="booking.html" class="cta-button">BOOK YOUR FLASH TATTOO</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div style="text-align: center; opacity: 0.5;">
+            © 2025 Berserk Tattoos. All Rights Reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // Artist Filter
+        const artistFilters = document.querySelectorAll('.artist-filter');
+        const flashItems = document.querySelectorAll('.flash-item');
+        const designCount = document.getElementById('design-count');
+        
+        artistFilters.forEach(filter => {
+            filter.addEventListener('click', function() {
+                artistFilters.forEach(f => f.classList.remove('active'));
+                this.classList.add('active');
+                
+                const artist = this.getAttribute('data-artist');
+                let visibleCount = 0;
+                
+                flashItems.forEach((item, index) => {
+                    if (artist === 'all' || item.getAttribute('data-artist') === artist) {
+                        item.style.display = 'block';
+                        visibleCount++;
+                        setTimeout(() => {
+                            item.style.animation = 'itemFadeIn 0.6s ease forwards';
+                        }, index * 50);
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Update design count
+                designCount.textContent = `Showing ${visibleCount} design${visibleCount !== 1 ? 's' : ''}`;
+            });
+        });
+        
+        // Book button functionality
+        document.querySelectorAll('.flash-cta').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                window.location.href = 'booking.html';
+            });
+        });
+        
+        // Flash item click for detail view
+        document.querySelectorAll('.flash-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('flash-cta')) {
+                    // Could open a modal with larger view and more details
+                    console.log('Flash design clicked:', this.querySelector('.flash-title').textContent);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

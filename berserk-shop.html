@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Art Prints & Gift Cards | Berserk Tattoos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #111111;
+            color: #F2F2F2;
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+        
+        /* Film Grain Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,.03) 2px, rgba(255,255,255,.03) 4px),
+                repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0,0,0,.05) 2px, rgba(0,0,0,.05) 4px);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.5;
+        }
+        
+        /* Typography */
+        h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            font-weight: 400; 
+            letter-spacing: -0.02em; 
+            line-height: 0.85;
+            text-transform: uppercase;
+        }
+        h2 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            font-weight: 400; 
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #7B1113;
+        }
+        h3 { font-family: 'Cinzel', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 400; }
+        
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            z-index: 50;
+            padding: 1.5rem 5%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(123, 17, 19, 0.2);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.75rem;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+            color: #F2F2F2;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #F2F2F2;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #7B1113;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Cart Icon */
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #7B1113;
+            color: #F2F2F2;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        /* Shop Hero */
+        .shop-hero {
+            padding: 10rem 5% 5rem;
+            background: #0a0a0a;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shop-hero::before {
+            content: 'SHOP';
+            position: absolute;
+            top: 50%;
+            left: -5%;
+            transform: translateY(-50%) rotate(-90deg);
+            font-size: 20rem;
+            font-family: 'Cinzel', serif;
+            opacity: 0.02;
+            letter-spacing: 0.5em;
+        }
+        
+        .hero-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.25rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+        
+        /* Category Tabs */
+        .category-tabs {
+            padding: 3rem 5%;
+            background: #111111;
+            position: sticky;
+            top: 80px;
+            z-index: 40;
+            border-bottom: 1px solid rgba(123, 17, 19, 0.2);
+        }
+        
+        .tabs-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .tab {
+            padding: 1rem 2rem;
+            background: none;
+            border: 2px solid rgba(242, 242, 242, 0.2);
+            color: #F2F2F2;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tab:hover {
+            border-color: #7B1113;
+        }
+        
+        .tab.active {
+            background: #7B1113;
+            border-color: #7B1113;
+        }
+        
+        /* Product Grid */
+        .products-section {
+            padding: 5rem 5%;
+            background: #0a0a0a;
+            min-height: 80vh;
+        }
+        
+        .products-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+        }
+        
+        .product-card {
+            position: relative;
+            background: #111111;
+            border: 1px solid rgba(123, 17, 19, 0.1);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            animation: itemFadeIn 0.6s ease forwards;
+        }
+        
+        .product-card:nth-child(n) { animation-delay: calc(0.1s * var(--i)); }
+        
+        @keyframes itemFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(123, 17, 19, 0.2);
+            border-color: #7B1113;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 400px;
+            background: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image::after {
+            content: 'PRODUCT IMAGE';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #333;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #7B1113;
+            color: #F2F2F2;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+        
+        .product-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(17, 17, 17, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+        
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .action-btn {
+            padding: 0.75rem 1.5rem;
+            background: #7B1113;
+            border: none;
+            color: #F2F2F2;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            background: #9B1517;
+            transform: scale(1.05);
+        }
+        
+        .action-btn.secondary {
+            background: transparent;
+            border: 1px solid #F2F2F2;
+        }
+        
+        .action-btn.secondary:hover {
+            background: #F2F2F2;
+            color: #111111;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-artist {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-family: 'Cinzel', serif;
+            color: #7B1113;
+        }
+        
+        /* Gift Card Section */
+        .gift-cards {
+            display: none;
+        }
+        
+        .gift-cards.active {
+            display: block;
+        }
+        
+        .gift-card-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .gift-card {
+            background: #111111;
+            border: 2px solid rgba(123, 17, 19, 0.2);
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gift-card:hover {
+            border-color: #7B1113;
+            transform: translateY(-5px);
+        }
+        
+        .gift-card.selected {
+            background: rgba(123, 17, 19, 0.1);
+            border-color: #7B1113;
+        }
+        
+        .gift-amount {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: #7B1113;
+            margin-bottom: 1rem;
+        }
+        
+        .gift-card p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .custom-amount {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(242, 242, 242, 0.05);
+            border: 1px solid rgba(242, 242, 242, 0.2);
+            color: #F2F2F2;
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        /* Featured Section */
+        .featured-section {
+            padding: 5rem 5%;
+            background: #111111;
+            border-top: 1px solid rgba(123, 17, 19, 0.2);
+        }
+        
+        .featured-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .featured-item {
+            position: relative;
+            background: #0a0a0a;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .featured-item:first-child {
+            grid-row: span 2;
+        }
+        
+        .featured-item:hover {
+            transform: scale(0.98);
+        }
+        
+        .featured-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(17, 17, 17, 0.9), transparent);
+        }
+        
+        .featured-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .featured-content p {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        
+        /* Info Section */
+        .info-section {
+            padding: 5rem 5%;
+            background: #0a0a0a;
+            border-top: 1px solid rgba(123, 17, 19, 0.2);
+        }
+        
+        .info-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .info-card {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid rgba(242, 242, 242, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            border-color: #7B1113;
+            transform: translateY(-5px);
+        }
+        
+        .info-icon {
+            font-size: 3rem;
+            color: #7B1113;
+            margin-bottom: 1rem;
+        }
+        
+        .info-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            opacity: 1;
+        }
+        
+        .info-card p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+        
+        /* Cart Drawer */
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: #111111;
+            border-left: 1px solid rgba(123, 17, 19, 0.2);
+            z-index: 100;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .cart-drawer.active {
+            right: 0;
+        }
+        
+        .cart-header {
+            padding: 2rem;
+            border-bottom: 1px solid rgba(242, 242, 242, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cart-close {
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: 1px solid rgba(242, 242, 242, 0.2);
+            color: #F2F2F2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+        
+        .cart-close:hover {
+            border-color: #7B1113;
+            color: #7B1113;
+        }
+        
+        .cart-items {
+            padding: 2rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(242, 242, 242, 0.1);
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background: #1a1a1a;
+            flex-shrink: 0;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cart-item-price {
+            color: #7B1113;
+            font-family: 'Cinzel', serif;
+        }
+        
+        .cart-footer {
+            padding: 2rem;
+            border-top: 1px solid rgba(242, 242, 242, 0.1);
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+        
+        .cart-total span:last-child {
+            font-family: 'Cinzel', serif;
+            color: #7B1113;
+            font-size: 1.5rem;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 1.25rem;
+            background: #7B1113;
+            border: none;
+            color: #F2F2F2;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .checkout-btn:hover {
+            background: #9B1517;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 5rem 5% 3rem;
+            background: #111111;
+            border-top: 1px solid rgba(123, 17, 19, 0.2);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .mobile-menu span {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #F2F2F2;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu span:nth-child(1) { top: 0; }
+        .mobile-menu span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+        .mobile-menu span:nth-child(3) { bottom: 0; }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-item:first-child {
+                grid-row: span 1;
+            }
+            
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .tabs-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gift-card-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-drawer {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="logo">BERSERK</a>
+            <div class="nav-links">
+                <a href="index.html#artists">ARTISTS</a>
+                <a href="gallery.html">GALLERY</a>
+                <a href="flash-sale.html">FLASH SALE</a>
+                <a href="#" class="active">SHOP</a>
+                <a href="index.html#booking">BOOKING</a>
+                <a href="#" class="cart-icon">
+                    CART
+                    <span class="cart-count">2</span>
+                </a>
+            </div>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- Shop Hero -->
+    <section class="shop-hero">
+        <div class="hero-content">
+            <h1>THE COLLECTION</h1>
+            <p>Take home a piece of Berserk. Museum-quality prints of our most iconic designs and gift cards for the ink enthusiast in your life.</p>
+        </div>
+    </section>
+    
+    <!-- Category Tabs -->
+    <section class="category-tabs">
+        <div class="tabs-container">
+            <button class="tab active" data-category="all">ALL PRODUCTS</button>
+            <button class="tab" data-category="prints">ART PRINTS</button>
+            <button class="tab" data-category="limited">LIMITED EDITIONS</button>
+            <button class="tab" data-category="gift-cards">GIFT CARDS</button>
+        </div>
+    </section>
+    
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="products-container">
+            <!-- Art Prints -->
+            <div class="product-grid" id="prints-grid">
+                <!-- Product 1 -->
+                <div class="product-card" style="--i: 1;">
+                    <div class="product-image">
+                        <div class="product-badge">BEST SELLER</div>
+                        <div class="product-overlay">
+                            <div class="quick-actions">
+                                <button class="action-btn">ADD TO CART</button>
+                                <button class="action-btn secondary">QUICK VIEW</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Death's Garden</h3>
+                        <p class="product-artist">by Monique Moore</p>
+                        <p class="product-price">$120</p>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" style="--i: 2;">
+                    <div class="product-image">
+                        <div class="product-overlay">
+                            <div class="quick-actions">
+                                <button class="action-btn">ADD TO CART</button>
+                                <button class="action-btn secondary">QUICK VIEW</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Lion's Gaze</h3>
+                        <p class="product-artist">by Ben White Raven</p>
+                        <p class="product-price">$150</p>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" style="--i: 3;">
+                    <div class="product-image">
+                        <div class="product-badge">LIMITED EDITION</div>
+                        <div class="product-overlay">
+                            <div class="quick-actions">
+                                <button class="action-btn">ADD TO CART</button>
+                                <button class="action-btn secondary">QUICK VIEW</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Sacred Geometry</h3>
+                        <p class="product-artist">by Amelia Kelso</p>
+                        <p class="product-price">$200</p>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" style="--i: 4;">
+                    <div class="product-image">
+                        <div class="product-overlay">
+                            <div class="quick-actions">
+                                <button class="action-btn">ADD TO CART</button>
+                                <button class="action-btn secondary">QUICK VIEW</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Void Walker</h3>
+                        <p class="product-artist">by Monique Moore</p>
+                        <p class="product-price">$140</p>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card" style="--i: 5;">
+                    <div class="product-image">
+                        <div class="product-badge">NEW</div>
+                        <div class="product-overlay">
+                            <div class="quick-actions">
+                                <button class="action-btn">ADD TO CART</button>
+                                <button class="action-btn secondary">QUICK VIEW</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ocean's Depth</h3>
+                        <p class="product-artist">by Ben White Raven</p>
+                        <p class="product-price">$160</p>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card" style="--i: 6;">
+                    <div class="product-image">
+                        <div class="product-overlay">
+                            <div class="quick-actions">
+                                <button class="action-btn">ADD TO CART</button>
+                                <button class="action-btn secondary">QUICK VIEW</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ethereal Botanicals</h3>
+                        <p class="product-artist">by Amelia Kelso</p>
+                        <p class="product-price">$130</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gift Cards Section -->
+            <div class="gift-cards" id="gift-cards-section">
+                <h2 style="text-align: center; margin-bottom: 3rem;">GIFT THE ART OF INK</h2>
+                <p style="text-align: center; max-width: 600px; margin: 0 auto 3rem; opacity: 0.8;">
+                    The perfect gift for the tattoo enthusiast. Our gift cards can be used for consultations, tattoo sessions, or shop purchases.
+                </p>
+                
+                <div class="gift-card-options">
+                    <div class="gift-card" data-amount="100">
+                        <div class="gift-amount">$100</div>
+                        <p>Perfect for a consultation and deposit</p>
+                    </div>
+                    <div class="gift-card" data-amount="250">
+                        <div class="gift-amount">$250</div>
+                        <p>Great for small tattoos or multiple prints</p>
+                    </div>
+                    <div class="gift-card selected" data-amount="500">
+                        <div class="gift-amount">$500</div>
+                        <p>Most popular - covers medium sized pieces</p>
+                    </div>
+                    <div class="gift-card" data-amount="1000">
+                        <div class="gift-amount">$1000</div>
+                        <p>For larger pieces or multiple sessions</p>
+                    </div>
+                    <div class="gift-card" data-amount="custom">
+                        <div class="gift-amount" style="font-size: 1.5rem;">CUSTOM</div>
+                        <p>Choose your own amount</p>
+                        <input type="number" class="custom-amount" placeholder="Enter amount" min="50" step="50">
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="action-btn" style="padding: 1rem 3rem; font-size: 1rem;">
+                        ADD GIFT CARD TO CART
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Section -->
+    <section class="featured-section">
+        <div class="featured-container">
+            <h2>FEATURED COLLECTIONS</h2>
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <div class="featured-content">
+                        <h3>Artist Series: Monique Moore</h3>
+                        <p>Dark aesthetic prints that command attention</p>
+                        <a href="#" class="action-btn secondary" style="display: inline-block;">EXPLORE COLLECTION</a>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <div class="featured-content">
+                        <h3>Limited Editions</h3>
+                        <p>Numbered prints, exclusive releases</p>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <div class="featured-content">
+                        <h3>Best Sellers</h3>
+                        <p>Our most loved designs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-icon">📦</div>
+                <h4>FREE SHIPPING</h4>
+                <p>On all orders over $150. Australia-wide delivery.</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">🖼️</div>
+                <h4>MUSEUM QUALITY</h4>
+                <p>Archival paper, fade-resistant inks, gallery-grade printing.</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">💎</div>
+                <h4>AUTHENTICITY</h4>
+                <p>Each print comes with certificate of authenticity.</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">↩️</div>
+                <h4>EASY RETURNS</h4>
+                <p>30-day return policy for unopened items.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cart Drawer -->
+    <div class="cart-drawer">
+        <div class="cart-header">
+            <h3>YOUR CART</h3>
+            <button class="cart-close">×</button>
+        </div>
+        <div class="cart-items">
+            <div class="cart-item">
+                <div class="cart-item-image"></div>
+                <div class="cart-item-info">
+                    <h4 class="cart-item-title">Death's Garden Print</h4>
+                    <p style="font-size: 0.85rem; opacity: 0.6;">by Monique Moore</p>
+                    <p class="cart-item-price">$120</p>
+                </div>
+            </div>
+            <div class="cart-item">
+                <div class="cart-item-image"></div>
+                <div class="cart-item-info">
+                    <h4 class="cart-item-title">Gift Card</h4>
+                    <p style="font-size: 0.85rem; opacity: 0.6;">Digital Delivery</p>
+                    <p class="cart-item-price">$500</p>
+                </div>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>TOTAL</span>
+                <span>$620</span>
+            </div>
+            <button class="checkout-btn">PROCEED TO CHECKOUT</button>
+            <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; opacity: 0.6;">
+                Shipping calculated at checkout
+            </p>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div style="text-align: center; opacity: 0.5;">
+            © 2025 Berserk Tattoos. All Rights Reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        const productsGrid = document.getElementById('prints-grid');
+        const giftCardsSection = document.getElementById('gift-cards-section');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-category');
+                
+                if (category === 'gift-cards') {
+                    productsGrid.style.display = 'none';
+                    giftCardsSection.classList.add('active');
+                } else {
+                    productsGrid.style.display = 'grid';
+                    giftCardsSection.classList.remove('active');
+                    // Here you would filter products based on category
+                }
+            });
+        });
+        
+        // Gift card selection
+        const giftCards = document.querySelectorAll('.gift-card');
+        giftCards.forEach(card => {
+            card.addEventListener('click', function() {
+                giftCards.forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+        
+        // Cart functionality
+        const cartIcon = document.querySelector('.cart-icon');
+        const cartDrawer = document.querySelector('.cart-drawer');
+        const cartClose = document.querySelector('.cart-close');
+        
+        cartIcon.addEventListener('click', function(e) {
+            e.preventDefault();
+            cartDrawer.classList.add('active');
+        });
+        
+        cartClose.addEventListener('click', function() {
+            cartDrawer.classList.remove('active');
+        });
+        
+        // Add to cart buttons
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            if (btn.textContent === 'ADD TO CART') {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    // Animate cart count
+                    const cartCount = document.querySelector('.cart-count');
+                    const currentCount = parseInt(cartCount.textContent);
+                    cartCount.textContent = currentCount + 1;
+                    
+                    // Show confirmation
+                    this.textContent = 'ADDED ✓';
+                    setTimeout(() => {
+                        this.textContent = 'ADD TO CART';
+                    }, 2000);
+                });
+            }
+        });
+        
+        // Quick view functionality
+        document.querySelectorAll('.action-btn.secondary').forEach(btn => {
+            if (btn.textContent === 'QUICK VIEW') {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    // Would open a modal with product details
+                    console.log('Quick view clicked');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
