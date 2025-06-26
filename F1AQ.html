@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Berserk Tattoos | Everything You Need to Know</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7B1113;
+            --bg: #111111;
+            --bg-alt: #0a0a0a;
+            --text: #F2F2F2;
+            --border: rgba(123, 17, 19, 0.2);
+            --accent: rgba(242, 242, 242, 0.1);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            cursor: crosshair;
+            min-height: 100vh;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,.03) 2px, rgba(255,255,255,.03) 4px),
+                repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0,0,0,.05) 2px, rgba(0,0,0,.05) 4px);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.5;
+        }
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; }
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 0.85;
+            text-transform: uppercase;
+        }
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            position: relative;
+            text-transform: uppercase;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            z-index: 50;
+            padding: 1.5rem 5%;
+            border-bottom: 1px solid var(--border);
+            transition: background var(--transition);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.75rem;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+            color: var(--text);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color var(--transition);
+            padding: 0.25rem 0;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width var(--transition);
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .nav-links .cta-booking {
+            background: var(--primary);
+            padding: 0.75rem 2rem;
+            border-radius: 2px;
+            border: 1px solid var(--primary);
+            transition: background var(--transition), color var(--transition);
+            color: var(--text);
+            font-weight: 700;
+        }
+        .nav-links .cta-booking::after { display: none; }
+        .nav-links .cta-booking:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+            z-index: 100;
+        }
+        .mobile-menu span {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: var(--text);
+            left: 0;
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+        .mobile-menu span:nth-child(1) { top: 0; }
+        .mobile-menu span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+        .mobile-menu span:nth-child(3) { bottom: 0; }
+        /* FAQ Hero */
+        .faq-hero {
+            padding: 9rem 5% 5rem;
+            background: var(--bg-alt);
+            position: relative;
+            overflow: hidden;
+        }
+        .faq-hero::before {
+            content: 'QUESTIONS';
+            position: absolute;
+            top: 50%;
+            right: -5%;
+            transform: translateY(-50%) rotate(90deg);
+            font-size: 15rem;
+            font-family: 'Cinzel', serif;
+            opacity: 0.02;
+            letter-spacing: 0.5em;
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+        }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-content h1 { margin-bottom: 1.5rem; }
+        .hero-content p {
+            font-size: 1.25rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+        .quick-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .quick-link {
+            padding: 0.75rem 1.5rem;
+            background: rgba(242, 242, 242, 0.05);
+            border: 1px solid var(--accent);
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: border var(--transition), background var(--transition);
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+        .quick-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(123, 17, 19, 0.2);
+            transition: left var(--transition);
+            z-index: 0;
+        }
+        .quick-link:hover {
+            border-color: var(--primary);
+        }
+        .quick-link:hover::before {
+            left: 0;
+        }
+        /* Search Bar */
+        .search-section {
+            padding: 3rem 5%;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 80px;
+            z-index: 40;
+        }
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 1.25rem 3rem 1.25rem 1.5rem;
+            background: rgba(242, 242, 242, 0.05);
+            border: 1px solid var(--accent);
+            color: var(--text);
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            border-radius: 2px;
+            transition: border var(--transition), background var(--transition);
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(123, 17, 19, 0.05);
+        }
+        .search-input::placeholder {
+            color: rgba(242, 242, 242, 0.5);
+        }
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1.2rem;
+            pointer-events: none;
+        }
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 5%;
+            background: var(--bg);
+            position: relative;
+        }
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .faq-category {
+            margin-bottom: 5rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .faq-category:nth-child(1) { animation-delay: 0.1s; }
+        .faq-category:nth-child(2) { animation-delay: 0.2s; }
+        .faq-category:nth-child(3) { animation-delay: 0.3s; }
+        .faq-category:nth-child(4) { animation-delay: 0.4s; }
+        .faq-category:nth-child(5) { animation-delay: 0.5s; }
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(123, 17, 19, 0.1);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            border-radius: 50%;
+            user-select: none;
+        }
+        .faq-list { list-style: none; }
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            transition: border var(--transition), transform var(--transition), background var(--transition);
+            background: transparent;
+        }
+        .faq-item:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+        .faq-item.active {
+            border-color: var(--primary);
+            background: rgba(123, 17, 19, 0.05);
+        }
+        .faq-question {
+            padding: 1.5rem 2rem;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.1rem;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background var(--transition), color var(--transition);
+            position: relative;
+            outline: none;
+            font-family: inherit;
+        }
+        .faq-question::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 0;
+            background: var(--primary);
+            transition: height var(--transition);
+        }
+        .faq-item.active .faq-question::before {
+            height: 100%;
+        }
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: transform var(--transition);
+        }
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition);
+            background: transparent;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 800px;
+        }
+        .faq-answer-content {
+            padding: 0 2rem 2rem;
+            opacity: 0;
+            transition: opacity var(--transition) 0.1s;
+        }
+        .faq-item.active .faq-answer-content {
+            opacity: 1;
+        }
+        .faq-answer-content p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            opacity: 0.85;
+        }
+        .faq-answer-content ul {
+            list-style: none;
+            margin-top: 1rem;
+            padding-left: 0;
+        }
+        .faq-answer-content li {
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            position: relative;
+        }
+        .faq-answer-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        .highlight-box {
+            background: rgba(123, 17, 19, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 2px;
+        }
+        .highlight-box strong { color: var(--primary); }
+        /* Urgent CTA */
+        .urgent-cta {
+            background: var(--primary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+        .urgent-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: urgentPulse 2s ease-in-out infinite;
+        }
+        @keyframes urgentPulse {
+            0%, 100% { left: -100%; }
+            50% { left: 100%; }
+        }
+        .urgent-cta h4, .urgent-cta p {
+            position: relative;
+            z-index: 1;
+            margin: 0 0 0.5rem 0;
+        }
+        /* Still Have Questions */
+        .contact-cta {
+            padding: 8rem 5%;
+            background: var(--bg-alt);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(123, 17, 19, 0.1), transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
+        }
+        .contact-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .contact-content h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .contact-content p {
+            font-size: 1.25rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+        .contact-option {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(242, 242, 242, 0.02);
+            border: 1px solid var(--accent);
+            transition: border var(--transition), background var(--transition), transform var(--transition);
+            text-decoration: none;
+            color: var(--text);
+            border-radius: 2px;
+            display: block;
+        }
+        .contact-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            background: rgba(123, 17, 19, 0.05);
+        }
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .contact-option h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            opacity: 1;
+        }
+        .contact-option p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin: 0;
+        }
+        .cta-primary {
+            background: var(--primary);
+            color: var(--text);
+            padding: 1.25rem 3rem;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: box-shadow var(--transition), transform var(--transition);
+            border: 2px solid var(--primary);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+            font-weight: 700;
+        }
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(123, 17, 19, 0.3);
+            background: transparent;
+            color: var(--primary);
+        }
+        /* Footer */
+        footer {
+            padding: 5rem 5% 3rem;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            opacity: 0.5;
+            font-size: 0.95rem;
+        }
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-options {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+        }
+        @media (max-width: 900px) {
+            .faq-hero::before { font-size: 8rem; }
+            .faq-section { padding: 3rem 2%; }
+            .contact-cta { padding: 5rem 2%; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+            .quick-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            .quick-link {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            .faq-question {
+                font-size: 1rem;
+                padding: 1.25rem 1.5rem;
+            }
+            .faq-answer-content {
+                padding: 0 1.5rem 1.5rem;
+            }
+            .contact-options {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .faq-hero { padding-top: 7rem; }
+            .search-section { top: 60px; }
+        }
+        @media (max-width: 500px) {
+            .faq-hero::before { font-size: 3rem; }
+            .faq-hero, .faq-section, .contact-cta, .search-section, footer {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .faq-question { font-size: 0.95rem; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="logo">BERSERK</a>
+            <div class="nav-links">
+                <a href="index.html#artists">ARTISTS</a>
+                <a href="gallery.html">GALLERY</a>
+                <a href="booking.html" class="cta-booking">BOOKING</a>
+                <a href="about.html">ABOUT</a>
+                <a href="#" class="active">FAQ</a>
+            </div>
+            <div class="mobile-menu" id="mobileMenuBtn" aria-label="Open menu" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <div class="nav-links mobile-nav" id="mobileNav" style="display:none;flex-direction:column;gap:1.5rem;background:rgba(17,17,17,0.98);position:absolute;top:100%;right:0;width:100%;padding:2rem 0;z-index:99;">
+            <a href="index.html#artists">ARTISTS</a>
+            <a href="gallery.html">GALLERY</a>
+            <a href="booking.html" class="cta-booking">BOOKING</a>
+            <a href="about.html">ABOUT</a>
+            <a href="#" class="active">FAQ</a>
+        </div>
+    </div>
+    <!-- FAQ Hero -->
+    <section class="faq-hero">
+        <div class="hero-content">
+            <h1>FREQUENTLY ASKED</h1>
+            <p>Everything you need to know before your journey begins. From first-timers to seasoned collectors, we've got you covered.</p>
+            <div class="quick-links">
+                <a href="#booking-process" class="quick-link">Booking Process</a>
+                <a href="#pricing" class="quick-link">Pricing & Payment</a>
+                <a href="#first-tattoo" class="quick-link">First Tattoo</a>
+                <a href="#aftercare" class="quick-link">Aftercare</a>
+                <a href="#policies" class="quick-link">Studio Policies</a>
+            </div>
+        </div>
+    </section>
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search your question..." aria-label="Search FAQ">
+            <span class="search-icon">⌕</span>
+        </div>
+    </section>
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <!-- Booking Process Category -->
+            <div class="faq-category" id="booking-process">
+                <div class="category-header">
+                    <div class="category-icon" aria-hidden="true">📅</div>
+                    <h3>BOOKING PROCESS</h3>
+                </div>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How do I book an appointment?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Booking with Berserk Tattoos is straightforward and designed to ensure the best experience:</p>
+                                <ul>
+                                    <li>Click the "BOOKING" button on any page to access our online booking system</li>
+                                    <li>Select your preferred artist based on style and availability</li>
+                                    <li>Fill out the consultation form with your tattoo details</li>
+                                    <li>Choose an available consultation slot</li>
+                                    <li>Pay the $50 consultation fee (credited toward your tattoo)</li>
+                                </ul>
+                                <div class="urgent-cta">
+                                    <h4>Limited Availability</h4>
+                                    <p>Our artists book 2-3 months in advance. Secure your spot today.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How far in advance should I book?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Booking timelines vary by artist and project scope:</p>
+                                <ul>
+                                    <li><strong>Amelia Kelso:</strong> 2-3 months for major pieces</li>
+                                    <li><strong>Ben White Raven:</strong> 3-4 months for large-scale realism</li>
+                                    <li><strong>Monique Moore:</strong> 1-2 months for most projects</li>
+                                </ul>
+                                <p>Smaller pieces may have earlier availability. We recommend booking as soon as you're ready to commit to ensure your preferred dates.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            What happens during a consultation?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Your consultation is a collaborative session where vision becomes reality:</p>
+                                <ul>
+                                    <li>Meet your artist in person or via video call</li>
+                                    <li>Discuss your ideas, placement, and size</li>
+                                    <li>Review reference materials and artist suggestions</li>
+                                    <li>Receive a custom quote and timeline</li>
+                                    <li>Schedule your tattoo appointment(s)</li>
+                                </ul>
+                                <p>Consultations typically last 30-60 minutes. Your $50 consultation fee is credited toward your final tattoo price.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Can I book multiple sessions for a large piece?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Absolutely. Large-scale projects are our specialty, and we'll work with you to create a session plan that fits your schedule and comfort level.</p>
+                                <p>Most large pieces are completed in 2-6 sessions, depending on size and complexity. We'll book all sessions during your consultation to ensure continuity.</p>
+                                <div class="highlight-box">
+                                    <strong>Pro Tip:</strong> Booking all sessions upfront often qualifies for package pricing discounts.
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Pricing & Payment Category -->
+            <div class="faq-category" id="pricing">
+                <div class="category-header">
+                    <div class="category-icon" aria-hidden="true">💰</div>
+                    <h3>PRICING & PAYMENT</h3>
+                </div>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How much do tattoos cost?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Our pricing reflects the exceptional quality and artistry of our work:</p>
+                                <ul>
+                                    <li>Hourly rates: $250-$400 depending on artist and complexity</li>
+                                    <li>Minimum charge: $500 for any tattoo</li>
+                                    <li>Small pieces (2-4 hours): $500-$1,600</li>
+                                    <li>Medium pieces (4-8 hours): $1,000-$3,200</li>
+                                    <li>Large pieces (8+ hours): $2,000+</li>
+                                </ul>
+                                <p>Final quotes are provided during consultation based on your specific design.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            What payment methods do you accept?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>We offer flexible payment options for your convenience:</p>
+                                <ul>
+                                    <li>Cash (preferred)</li>
+                                    <li>Credit/Debit cards (Visa, Mastercard, AMEX)</li>
+                                    <li>Bank transfers</li>
+                                    <li>Payment plans for pieces over $2,500</li>
+                                </ul>
+                                <div class="highlight-box">
+                                    <strong>Deposit Policy:</strong> 30% deposit required to secure your appointment. Deposits are non-refundable but transferable with 48 hours notice.
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Do you offer payment plans?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Yes, we offer payment plans for larger projects to make your dream tattoo accessible:</p>
+                                <ul>
+                                    <li>Available for tattoos over $2,500</li>
+                                    <li>50% paid by first session, remainder split across sessions</li>
+                                    <li>No interest or additional fees</li>
+                                    <li>Custom arrangements available for extensive projects</li>
+                                </ul>
+                                <p>Discuss payment plan options during your consultation.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- First Tattoo Category -->
+            <div class="faq-category" id="first-tattoo">
+                <div class="category-header">
+                    <div class="category-icon" aria-hidden="true">✨</div>
+                    <h3>FIRST TATTOO GUIDE</h3>
+                </div>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            I've never gotten a tattoo before. Where do I start?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Welcome to the beginning of your tattoo journey! We specialize in making first-time experiences memorable:</p>
+                                <ul>
+                                    <li><strong>Research styles:</strong> Browse our artists' portfolios to find what resonates</li>
+                                    <li><strong>Consider placement:</strong> Think about visibility and pain tolerance</li>
+                                    <li><strong>Start reasonable:</strong> Your first tattoo doesn't have to be small, but consider your comfort</li>
+                                    <li><strong>Book a consultation:</strong> We'll guide you through every step</li>
+                                </ul>
+                                <p>Our artists are experienced in working with first-timers and will ensure you feel comfortable and informed throughout the process.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How painful is getting a tattoo?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Pain is subjective, but most clients describe it as manageable discomfort rather than severe pain:</p>
+                                <ul>
+                                    <li><strong>Less painful areas:</strong> Arms, thighs, calves, shoulders</li>
+                                    <li><strong>More sensitive areas:</strong> Ribs, feet, hands, neck</li>
+                                    <li><strong>Duration matters:</strong> Longer sessions can be more challenging</li>
+                                </ul>
+                                <p>We work at your pace and can take breaks whenever needed. Many clients find the experience meditative once they settle in.</p>
+                                <div class="highlight-box">
+                                    <strong>Pain Management Tips:</strong> Get plenty of rest, eat a good meal beforehand, stay hydrated, and remember to breathe!
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            What should I do to prepare for my appointment?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Proper preparation ensures the best experience and results:</p>
+                                <ul>
+                                    <li><strong>Night before:</strong> Get 8+ hours of sleep, avoid alcohol</li>
+                                    <li><strong>Day of:</strong> Eat a substantial meal, shower, wear comfortable clothing</li>
+                                    <li><strong>Bring:</strong> ID, water, snacks, headphones/entertainment</li>
+                                    <li><strong>Avoid:</strong> Alcohol, drugs, aspirin, excessive caffeine</li>
+                                </ul>
+                                <p>Arrive 15 minutes early to complete paperwork and settle in.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Aftercare Category -->
+            <div class="faq-category" id="aftercare">
+                <div class="category-header">
+                    <div class="category-icon" aria-hidden="true">💧</div>
+                    <h3>AFTERCARE</h3>
+                </div>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How do I care for my new tattoo?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Proper aftercare is crucial for healing and preserving your tattoo's quality:</p>
+                                <ul>
+                                    <li><strong>First 3 hours:</strong> Keep the bandage on</li>
+                                    <li><strong>Day 1-3:</strong> Wash gently with antibacterial soap, pat dry, apply thin layer of provided aftercare balm</li>
+                                    <li><strong>Day 4-14:</strong> Continue washing 2-3 times daily, moisturize regularly</li>
+                                    <li><strong>Week 2-4:</strong> Let scabs fall off naturally, continue moisturizing</li>
+                                </ul>
+                                <div class="urgent-cta">
+                                    <h4>Premium Aftercare Kit Included</h4>
+                                    <p>Every tattoo comes with our curated aftercare products and detailed instructions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            What should I avoid during healing?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Protect your investment by avoiding these during the healing process:</p>
+                                <ul>
+                                    <li>Swimming pools, hot tubs, ocean water (3-4 weeks)</li>
+                                    <li>Direct sunlight and tanning beds (4 weeks minimum)</li>
+                                    <li>Picking or scratching at scabs</li>
+                                    <li>Tight clothing over the tattoo</li>
+                                    <li>Excessive sweating/gym for first 48 hours</li>
+                                    <li>Petroleum-based products</li>
+                                </ul>
+                                <p>Following these guidelines ensures optimal healing and color retention.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Do you offer touch-ups?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>We stand behind our work with a comprehensive touch-up policy:</p>
+                                <ul>
+                                    <li>Free touch-ups within 6 months if you follow aftercare instructions</li>
+                                    <li>Must provide photos of healing process if requested</li>
+                                    <li>Touch-ups cover any areas that didn't heal properly</li>
+                                    <li>Does not cover damage from sun exposure or neglect</li>
+                                </ul>
+                                <p>Most tattoos heal perfectly with proper care and don't require touch-ups.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Studio Policies Category -->
+            <div class="faq-category" id="policies">
+                <div class="category-header">
+                    <div class="category-icon" aria-hidden="true">📋</div>
+                    <h3>STUDIO POLICIES</h3>
+                </div>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            What is your cancellation policy?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>We understand plans change, but please respect our artists' time:</p>
+                                <ul>
+                                    <li><strong>48+ hours notice:</strong> Deposit transfers to new appointment</li>
+                                    <li><strong>Less than 48 hours:</strong> Deposit is forfeited</li>
+                                    <li><strong>No-shows:</strong> Deposit forfeited and booking privileges may be revoked</li>
+                                    <li><strong>Emergencies:</strong> Handled case-by-case with documentation</li>
+                                </ul>
+                                <div class="highlight-box">
+                                    <strong>Tip:</strong> Add your appointment to your calendar with reminders to avoid accidental no-shows.
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            What are the age requirements?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>We maintain strict age policies for legal and safety reasons:</p>
+                                <ul>
+                                    <li>Must be 18 years or older</li>
+                                    <li>Valid government-issued photo ID required</li>
+                                    <li>No exceptions for parental consent</li>
+                                    <li>International passports accepted</li>
+                                </ul>
+                                <p>Please bring your ID to every appointment, including consultations.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Can I bring someone with me?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>We welcome support, but maintain a focused environment:</p>
+                                <ul>
+                                    <li>One guest allowed for moral support</li>
+                                    <li>Guest must remain in designated waiting area</li>
+                                    <li>No children under 18 in the studio</li>
+                                    <li>Service animals welcome with documentation</li>
+                                </ul>
+                                <p>Our studio space is designed for artist concentration and client comfort.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            What health conditions should I disclose?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Your safety is paramount. Please disclose if you have:</p>
+                                <ul>
+                                    <li>Diabetes, hemophilia, or blood disorders</li>
+                                    <li>Heart conditions or pacemakers</li>
+                                    <li>Epilepsy or seizure disorders</li>
+                                    <li>Pregnancy or nursing</li>
+                                    <li>Skin conditions (eczema, psoriasis)</li>
+                                    <li>Allergies to latex, metals, or inks</li>
+                                    <li>Medications that affect blood clotting</li>
+                                </ul>
+                                <p>We'll work with you to ensure a safe tattoo experience or recommend waiting if necessary.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- Still Have Questions CTA -->
+    <section class="contact-cta">
+        <div class="contact-content">
+            <h2>STILL HAVE QUESTIONS?</h2>
+            <p>We're here to help. Reach out through your preferred method and we'll get back to you within 24 hours.</p>
+            <div class="contact-options">
+                <a href="tel:0478128212" class="contact-option">
+                    <span class="contact-icon" aria-hidden="true">📞</span>
+                    <h4>CALL US</h4>
+                    <p>0478 128 212</p>
+                </a>
+                <a href="mailto:berserk.tattoos.au@gmail.com" class="contact-option">
+                    <span class="contact-icon" aria-hidden="true">✉️</span>
+                    <h4>EMAIL US</h4>
+                    <p>Quick response</p>
+                </a>
+                <a href="#" class="contact-option">
+                    <span class="contact-icon" aria-hidden="true">💬</span>
+                    <h4>LIVE CHAT</h4>
+                    <p>Instant help</p>
+                </a>
+            </div>
+            <a href="booking.html" class="cta-primary">BOOK YOUR CONSULTATION</a>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        © 2025 Berserk Tattoos. All Rights Reserved.
+    </footer>
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.closest('.faq-item');
+                const isActive = faqItem.classList.contains('active');
+                const category = button.closest('.faq-category');
+                category.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    button.setAttribute('aria-expanded', 'true');
+                }
+            });
+            button.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') button.click();
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = '';
+                    if (searchTerm.length > 2) {
+                        item.style.border = '1.5px solid #7B1113';
+                    } else {
+                        item.style.border = '';
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            if (searchTerm === '') {
+                faqItems.forEach(item => {
+                    item.style.display = '';
+                    item.style.border = '';
+                });
+            }
+        });
+
+        // Smooth scroll to categories
+        document.querySelectorAll('.quick-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    const offset = window.innerWidth < 768 ? 120 : 200;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Mobile nav toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        let navOpen = false;
+        function toggleMobileNav() {
+            navOpen = !navOpen;
+            mobileNav.style.display = navOpen ? 'flex' : 'none';
+            document.body.style.overflow = navOpen ? 'hidden' : '';
+            mobileMenuBtn.setAttribute('aria-label', navOpen ? 'Close menu' : 'Open menu');
+        }
+        mobileMenuBtn.addEventListener('click', toggleMobileNav);
+        mobileMenuBtn.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') toggleMobileNav();
+        });
+        // Close mobile nav on link click
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navOpen = false;
+                mobileNav.style.display = 'none';
+                document.body.style.overflow = '';
+            });
+        });
+        // Accessibility: close nav on outside click
+        document.addEventListener('click', e => {
+            if (navOpen && !mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                navOpen = false;
+                mobileNav.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+        // Accessibility: close nav on escape
+        document.addEventListener('keydown', e => {
+            if (navOpen && e.key === 'Escape') {
+                navOpen = false;
+                mobileNav.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>
